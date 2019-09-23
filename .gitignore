@@ -1,1 +1,3 @@
 node_modules/
+systemjs.config.js
+tsconfig.json

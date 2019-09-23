@@ -7,7 +7,7 @@ import { ProductService } from './product.service';
 // encapsulating style sheets using styleUrls
 @Component({
     templateUrl: './product-list.component.html',
-    styleUrls: ['./product-list.component.css']
+    styleUrls: ['./product-list.component.css'],
 })
 // define a class
 export class ProductListComponent implements OnInit {
@@ -15,7 +15,6 @@ export class ProductListComponent implements OnInit {
     imageWidth: number = 50;
     imageMargin: number = 2;
     showImage: boolean = false;
-    errorMessage: string;
 
     _listFilter: string;
     // When it's needed it will be got
@@ -25,14 +24,13 @@ export class ProductListComponent implements OnInit {
     // when the user changes it, it will be changed
     set listFilter(value:string) {
         this._listFilter = value;
-        this.filteredProducts = this.listFilter ? this.performFilter(this.listFilter) : this.prodcuts;
+        this.filteredProducts = this.listFilter ? this.performFilter(this.listFilter) : this.products;
     }
 
     filteredProducts: IProduct[];
     products: IProduct[] = [];
 
-    constructor(private productService: ProductService) {
-    }
+    constructor(private productService: ProductService) {}
 
     // set type to void if your method doesn't return anything
     onRatingClicked(message: string): void {
@@ -41,7 +39,7 @@ export class ProductListComponent implements OnInit {
 
     performFilter(filterBy: string): IProduct[] {
         filterBy = filterBy.toLocaleLowerCase();
-        return this.prodcuts.filter((product: IProduct) =>
+        return this.products.filter((product: IProduct) =>
             product.productName.toLocaleLowerCase().indexOf(filterBy) !== -1);
     }
 
@@ -52,13 +50,7 @@ export class ProductListComponent implements OnInit {
 
     // on init method
     ngOnInit(): void {
-        this.productService.getProducts().subscribe({
-            next: products => {
-                this.products = products
-                this.filteredProducts = this.products;
-            },
-            error: err => this.errorMessage = err
-        });
+        this.products = this.productService.getProducts();
         this.filteredProducts = this.products;
     }
 }

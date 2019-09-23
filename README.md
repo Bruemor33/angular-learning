@@ -1,7 +1,7 @@
-* Learning Angular
+*Learning Angular
 
-** Angular Modules
+**Angular Modules
 
-*** Defining a Feature Module
+***Defining a Feature Module
 
- CommonModule, Forms, Router -> ProductModule -> ProductList, ProductDetail, ConvertTo, Star
+CommonModule, Forms, Router -> ProductModule -> ProductList, ProductDetail, ConvertTo, Star
